@@ -76,4 +76,15 @@ public class Vaccination {
         this.docCode = docCode;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Vaccination{");
+        sb.append("vaccinationDate=").append(vaccinationDate);
+        sb.append(", expirationDate=").append(expirationDate);
+        sb.append(", completed=").append(completed);
+        sb.append(", userCode=").append(userCode);
+        sb.append(", docCode=").append(docCode);
+        sb.append('}');
+        return sb.toString();
+    }
 }

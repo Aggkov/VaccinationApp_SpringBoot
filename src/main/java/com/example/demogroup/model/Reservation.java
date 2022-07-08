@@ -42,4 +42,12 @@ public class Reservation {
         this.tsCode = tsCode;
     }
 
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", userCode=" + userCode +
+                ", tsCode=" + tsCode +
+                '}';
+    }
 }
