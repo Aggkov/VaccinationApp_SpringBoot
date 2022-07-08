@@ -63,4 +63,14 @@ public class Doctor {
         this.timeslots = timeslots;
     }
 
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", docName='" + docName + '\'' +
+                ", docSurname='" + docSurname + '\'' +
+                ", vaccinations=" + vaccinations +
+                ", timeslots=" + timeslots +
+                '}';
+    }
 }
