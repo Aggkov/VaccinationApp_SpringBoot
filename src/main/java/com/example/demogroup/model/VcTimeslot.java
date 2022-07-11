@@ -12,12 +12,12 @@ public class VcTimeslot {
     @MapsId("vcCode")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "vc_code", nullable = false)
-    private VaccinationCenter vcCode;
+    private VaccinationCenter vaccinationCenter;
 
     @MapsId("tsCode")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ts_code", nullable = false)
-    private Timeslot tsCode;
+    private Timeslot timeslot;
 
     public VcTimeslotId getId() {
         return id;
@@ -27,20 +27,20 @@ public class VcTimeslot {
         this.id = id;
     }
 
-    public VaccinationCenter getVcCode() {
-        return vcCode;
+    public VaccinationCenter getVaccinationCenter() {
+        return vaccinationCenter;
     }
 
-    public void setVcCode(VaccinationCenter vcCode) {
-        this.vcCode = vcCode;
+    public void setVaccinationCenter(VaccinationCenter vaccinationCenter) {
+        this.vaccinationCenter = vaccinationCenter;
     }
 
-    public Timeslot getTsCode() {
-        return tsCode;
+    public Timeslot getTimeslot() {
+        return timeslot;
     }
 
-    public void setTsCode(Timeslot tsCode) {
-        this.tsCode = tsCode;
+    public void setTimeslot(Timeslot timeslot) {
+        this.timeslot = timeslot;
     }
 
 }

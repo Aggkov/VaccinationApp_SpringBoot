@@ -4,12 +4,12 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class VcTimeslotId implements Serializable {
+
     private static final long serialVersionUID = -7832727072690695797L;
     @Column(name = "vc_code", nullable = false)
     private Integer vcCode;

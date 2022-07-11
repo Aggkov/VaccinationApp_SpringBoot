@@ -8,6 +8,10 @@ public class DemoGroupApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoGroupApplication.class, args);
+
+
+
     }
+
 
 }

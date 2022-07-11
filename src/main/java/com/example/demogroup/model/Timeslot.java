@@ -1,5 +1,7 @@
 package com.example.demogroup.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,9 +30,9 @@ public class Timeslot {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_code")
-    private Doctor docCode;
+    private Doctor doctor;
 
-    @OneToMany(mappedBy = "tsCode")
+    @OneToMany(mappedBy = "timeslot")
     private Set<Reservation> reservations = new LinkedHashSet<>();
 
     @ManyToMany
@@ -79,12 +81,12 @@ public class Timeslot {
         this.available = available;
     }
 
-    public Doctor getDocCode() {
-        return docCode;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDocCode(Doctor docCode) {
-        this.docCode = docCode;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public Set<Reservation> getReservations() {
@@ -95,6 +97,7 @@ public class Timeslot {
         this.reservations = reservations;
     }
 
+    @JsonBackReference
     public Set<VaccinationCenter> getVaccinationCenters() {
         return vaccinationCenters;
     }

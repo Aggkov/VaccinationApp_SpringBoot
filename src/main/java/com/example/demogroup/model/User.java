@@ -12,18 +12,18 @@ public class User {
     private Integer id;
 
     @Column(name = "user_name", length = 45)
-    private String userName;
+    private String firstName;
 
     @Column(name = "user_surname", length = 45)
-    private String userSurname;
+    private String lastName;
 
     @Column(name = "user_email", length = 45)
-    private String userEmail;
+    private String email;
 
-    @OneToMany(mappedBy = "userCode")
+    @OneToMany(mappedBy = "user")
     private Set<Reservation> reservations = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "userCode")
+    @OneToMany(mappedBy = "user")
     private Set<Vaccination> vaccinations = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -34,28 +34,28 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String userName) {
+        this.firstName = userName;
     }
 
-    public String getUserSurname() {
-        return userSurname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUserSurname(String userSurname) {
-        this.userSurname = userSurname;
+    public void setLastName(String userSurname) {
+        this.lastName = userSurname;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setEmail(String userEmail) {
+        this.email = userEmail;
     }
 
     public Set<Reservation> getReservations() {

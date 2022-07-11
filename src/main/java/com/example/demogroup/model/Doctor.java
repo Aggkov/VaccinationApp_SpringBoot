@@ -12,15 +12,15 @@ public class Doctor {
     private Integer id;
 
     @Column(name = "doc_name", length = 45)
-    private String docName;
+    private String firstName;
 
     @Column(name = "doc_surname", length = 45)
-    private String docSurname;
+    private String lastName;
 
-    @OneToMany(mappedBy = "docCode")
+    @OneToMany(mappedBy = "doctor")
     private Set<Vaccination> vaccinations = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "docCode")
+    @OneToMany(mappedBy = "doctor")
     private Set<Timeslot> timeslots = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -31,20 +31,20 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getDocName() {
-        return docName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setDocName(String docName) {
-        this.docName = docName;
+    public void setFirstName(String docName) {
+        this.firstName = docName;
     }
 
-    public String getDocSurname() {
-        return docSurname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setDocSurname(String docSurname) {
-        this.docSurname = docSurname;
+    public void setLastName(String docSurname) {
+        this.lastName = docSurname;
     }
 
     public Set<Vaccination> getVaccinations() {
@@ -67,8 +67,8 @@ public class Doctor {
     public String toString() {
         return "Doctor{" +
                 "id=" + id +
-                ", docName='" + docName + '\'' +
-                ", docSurname='" + docSurname + '\'' +
+                ", docName='" + firstName + '\'' +
+                ", docSurname='" + lastName + '\'' +
                 ", vaccinations=" + vaccinations +
                 ", timeslots=" + timeslots +
                 '}';

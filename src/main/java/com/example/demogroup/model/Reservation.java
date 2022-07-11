@@ -12,11 +12,11 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_code")
-    private User userCode;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ts_code")
-    private Timeslot tsCode;
+    private Timeslot timeslot;
 
     public Integer getId() {
         return id;
@@ -26,28 +26,28 @@ public class Reservation {
         this.id = id;
     }
 
-    public User getUserCode() {
-        return userCode;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserCode(User userCode) {
-        this.userCode = userCode;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Timeslot getTsCode() {
-        return tsCode;
+    public Timeslot getTimeslot() {
+        return timeslot;
     }
 
-    public void setTsCode(Timeslot tsCode) {
-        this.tsCode = tsCode;
+    public void setTimeslot(Timeslot tsCode) {
+        this.timeslot = tsCode;
     }
 
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", userCode=" + userCode +
-                ", tsCode=" + tsCode +
+                ", userCode=" + user +
+                ", tsCode=" + timeslot +
                 '}';
     }
 }

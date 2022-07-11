@@ -22,11 +22,11 @@ public class Vaccination {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_code")
-    private User userCode;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_code")
-    private Doctor docCode;
+    private Doctor doctor;
 
     public Integer getId() {
         return id;
@@ -60,20 +60,20 @@ public class Vaccination {
         this.completed = completed;
     }
 
-    public User getUserCode() {
-        return userCode;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserCode(User userCode) {
-        this.userCode = userCode;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Doctor getDocCode() {
-        return docCode;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDocCode(Doctor docCode) {
-        this.docCode = docCode;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     @Override
@@ -82,8 +82,8 @@ public class Vaccination {
         sb.append("vaccinationDate=").append(vaccinationDate);
         sb.append(", expirationDate=").append(expirationDate);
         sb.append(", completed=").append(completed);
-        sb.append(", userCode=").append(userCode);
-        sb.append(", docCode=").append(docCode);
+        sb.append(", userCode=").append(user);
+        sb.append(", docCode=").append(doctor);
         sb.append('}');
         return sb.toString();
     }
