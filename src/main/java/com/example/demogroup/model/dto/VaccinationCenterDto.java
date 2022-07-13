@@ -1,12 +1,12 @@
 package com.example.demogroup.model.dto;
 
-public class VaccinationCentersDto {
+public class VaccinationCenterDto {
 
     private Integer id;
 
     private String address;
 
-    public VaccinationCentersDto() {
+    public VaccinationCenterDto() {
     }
 
     public Integer getId() {
