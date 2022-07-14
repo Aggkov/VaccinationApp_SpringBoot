@@ -1,12 +1,11 @@
 package com.example.demogroup.service;
 
-import com.example.demogroup.model.User;
 import com.example.demogroup.model.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface IUserService {
+public interface UserService {
 
    List<UserDto> getAllUsers();
 

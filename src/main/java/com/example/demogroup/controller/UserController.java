@@ -1,7 +1,7 @@
 package com.example.demogroup.controller;
 
 import com.example.demogroup.model.dto.UserDto;
-import com.example.demogroup.service.IUserService;
+import com.example.demogroup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ public class UserController {
 
 
     @Autowired
-    IUserService userService;
+    UserService userService;
 
     @GetMapping("/allUsers")
     public List<UserDto> allUsers() {

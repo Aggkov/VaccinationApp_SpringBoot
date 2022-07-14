@@ -6,7 +6,7 @@ import com.example.demogroup.exception.ResourceNotFoundException2;
 import com.example.demogroup.model.User;
 import com.example.demogroup.model.dto.UserDto;
 import com.example.demogroup.repository.UserRepository;
-import com.example.demogroup.service.IUserService;
+import com.example.demogroup.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements IUserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
      private UserRepository userRepository;
@@ -27,14 +27,14 @@ public class UserService implements IUserService {
     @Autowired
     ModelMapper modelMapper;
 
-    public UserService(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
 
     @Override
     public List<UserDto> getAllUsers() {
-        List<User> users = new ArrayList<>(userRepository.findAllByOrderByUserSurnameAsc());
+        List<User> users = new ArrayList<>(userRepository.findAllByOrderByLastName());
         List<UserDto> userDto = users.stream().map(user -> modelMapper.map(user , UserDto.class))
                                .collect(Collectors.toList());
         return userDto;
@@ -45,7 +45,7 @@ public class UserService implements IUserService {
         //convert dto to entity
         User userRequest = modelMapper.map(userDto , User.class);
         //Check if user email is available
-        if(userRepository.findByUserEmail(userRequest.getUserEmail()) != null) {
+        if(userRepository.findByEmail(userRequest.getEmail()) != null) {
             throw new CreateRecordException(ExceptionMessagesForExistingValues.EMAIL_ALREADY_EXISTS.getErrorResponse());
         }
 
@@ -72,9 +72,9 @@ public class UserService implements IUserService {
         User user = userRepository.findById(id)
                                   .orElseThrow(() -> new ResourceNotFoundException2("User","id",id));
         user.setId(userDto.getId());
-        user.setUserName(userDto.getUserName());
-        user.setUserSurname(userDto.getUserSurname());
-        user.setUserEmail(userDto.getEmail());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
         userRepository.save(user);
 
         //convert Entity to Dto

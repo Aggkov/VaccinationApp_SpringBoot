@@ -3,8 +3,8 @@ package com.example.demogroup.model.dto;
 public class UserDto {
 
     private Integer id;
-    private String userName;
-    private String userSurname;
+    private String firstName;
+    private String lastName;
     private String email;
 
 
@@ -16,20 +16,20 @@ public class UserDto {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getUserSurname() {
-        return userSurname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUserSurname(String userSurname) {
-        this.userSurname = userSurname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
