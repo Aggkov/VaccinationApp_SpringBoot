@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 
+    public Doctor getDoctorById(Integer id);
+
+    public boolean existsDoctorById(Integer id);
+
 }

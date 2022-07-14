@@ -23,6 +23,15 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor")
     private Set<Timeslot> timeslots = new LinkedHashSet<>();
 
+    public Doctor() {
+    }
+
+    public Doctor(Integer id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Integer getId() {
         return id;
     }
