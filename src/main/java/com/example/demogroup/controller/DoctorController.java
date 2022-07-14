@@ -47,7 +47,9 @@ public class DoctorController {
     @PutMapping("/doctors")
     public Doctor updateDoctor(@RequestBody DoctorDto doctorDto) {
         Doctor doctor = new Doctor(doctorDto.getId(),doctorDto.getFirstName(),doctorDto.getLastName());
+
         Doctor updatedDoctor = doctorService.getDoctorById(doctor.getId());
+
         updatedDoctor.setFirstName(doctorDto.getFirstName());
         updatedDoctor.setLastName(doctorDto.getLastName());
         doctorService.saveDoctor(updatedDoctor);
