@@ -48,8 +48,8 @@ public class DoctorController {
     public Doctor updateDoctor(@RequestBody DoctorDto doctorDto) {
         Doctor doctor = new Doctor(doctorDto.getId(),doctorDto.getFirstName(),doctorDto.getLastName());
         Doctor updatedDoctor = doctorService.getDoctorById(doctor.getId());
-        updatedDoctor.setFirstName(doctorDto.getFirstName());
-        updatedDoctor.setLastName(doctorDto.getLastName());
+        updatedDoctor.setFirstName(doctor.getFirstName());
+        updatedDoctor.setLastName(doctor.getLastName());
         doctorService.saveDoctor(updatedDoctor);
         return updatedDoctor;
     }
