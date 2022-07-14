@@ -1,8 +1,8 @@
-package com.example.demogroup.service.implementation;
+package com.example.demogroup.service.Impl;
 
-import com.example.demogroup.exceptions.CreateRecordException;
-import com.example.demogroup.exceptions.ExceptionMessagesForExistingValues;
-import com.example.demogroup.exceptions.ResourceNotFoundException;
+import com.example.demogroup.exception.CreateRecordException;
+import com.example.demogroup.exception.ExceptionMessagesForExistingValues;
+import com.example.demogroup.exception.ResourceNotFoundException2;
 import com.example.demogroup.model.User;
 import com.example.demogroup.model.dto.UserDto;
 import com.example.demogroup.repository.UserRepository;
@@ -70,7 +70,7 @@ public class UserService implements IUserService {
         User userRequest = modelMapper.map(userDto , User.class);
         // Get user and Update
         User user = userRepository.findById(id)
-                                  .orElseThrow(() -> new ResourceNotFoundException("User","id",id));
+                                  .orElseThrow(() -> new ResourceNotFoundException2("User","id",id));
         user.setId(userDto.getId());
         user.setUserName(userDto.getUserName());
         user.setUserSurname(userDto.getUserSurname());

@@ -1,4 +1,4 @@
-package com.example.demogroup.controllers;
+package com.example.demogroup.controller;
 
 import com.example.demogroup.model.dto.UserDto;
 import com.example.demogroup.service.IUserService;

@@ -1,4 +1,4 @@
-package com.example.demogroup.exceptions;
+package com.example.demogroup.exception;
 
 public enum ExceptionMessagesForExistingValues {
 
