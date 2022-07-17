@@ -14,5 +14,4 @@ public enum ExceptionMessagesForExistingValues {
     public String getErrorResponse() {
         return errorResponse;
     }
-
 }

@@ -21,6 +21,7 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
+//    @JsonBackReference
     private Set<Reservation> reservations = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")

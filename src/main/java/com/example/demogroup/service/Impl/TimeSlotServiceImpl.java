@@ -39,9 +39,9 @@ public class TimeSlotServiceImpl implements TimeSlotService {
         List<Timeslot> timeslotsByCenter = new ArrayList<>(center.getTimeslots());
         Collections.sort(timeslotsByCenter, new Comparator() {
             public int compare (Object o1, Object o2){
-                Timeslot p1 = (Timeslot)o1;
-                Timeslot p2 = (Timeslot)o2;
-                return p2.getId().compareTo(p1.getId());
+                Timeslot timeslot1 = (Timeslot)o1;
+                Timeslot timeslot2 = (Timeslot)o2;
+                return timeslot2.getId().compareTo(timeslot1.getId());
             }
         });
 

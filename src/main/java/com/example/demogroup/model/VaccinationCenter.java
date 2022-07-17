@@ -1,7 +1,5 @@
 package com.example.demogroup.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -39,7 +37,7 @@ public class VaccinationCenter {
         this.address = address;
     }
 
-    @JsonManagedReference
+//    @JsonManagedReference
     public Set<Timeslot> getTimeslots() {
         return timeslots;
     }

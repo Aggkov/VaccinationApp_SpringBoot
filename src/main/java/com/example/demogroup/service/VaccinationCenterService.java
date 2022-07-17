@@ -13,9 +13,9 @@ public interface VaccinationCenterService {
 
     ResponseEntity<VaccinationCenter> addVaccinationCenter();
 
-    ResponseEntity<VaccinationCenter> getVaccinationCenter(Integer id);
+    VaccinationCenterDto getVaccinationCenter(Integer id);
 
-    ResponseEntity<List<VaccinationCenterDto>> getAllVaccinationCentersByDate(LocalDate dateFrom, LocalDate dateTo);
+    List<VaccinationCenterDto> getAllVaccinationCentersByDate(LocalDate dateFrom, LocalDate dateTo);
 
 //    ResponseEntity<VaccinationCenter> updateVaccinationCenter(Integer id);
 
