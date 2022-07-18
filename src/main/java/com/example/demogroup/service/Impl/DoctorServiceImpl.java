@@ -52,10 +52,15 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void saveDoctor(Doctor doctor) {
-        if(!doctorRepository.existsDoctorById(doctor.getId())) {
+    public void updateDoctor(Doctor doctor) {
+        if(doctorRepository.existsDoctorById(doctor.getId())) {
             doctorRepository.save(doctor);
         }
+    }
+
+    @Override
+    public void saveDoctor(Doctor doctor) {
+        doctorRepository.save(doctor);
     }
 
 }

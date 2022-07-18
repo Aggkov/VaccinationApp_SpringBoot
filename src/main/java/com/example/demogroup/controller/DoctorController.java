@@ -36,21 +36,31 @@ public class DoctorController {
         return ("Doctor deleted ID: " + id);
     }
 
-    // ΜΗΠΩΣ ΘΕΛΟΥΝ ΩΣ ΟΡΙΣΜΑ DOCTOR DTO ???
+
     @PostMapping("/doctors")
-    public void addDoctor(@RequestBody Doctor insertedDoctor) {
-        if (!doctorService.doesDoctorExists(insertedDoctor.getId())) {
-            doctorService.saveDoctor(insertedDoctor);
+    public Doctor addDoctor(@RequestBody DoctorDto doctorDto) {
+        Doctor newDoctor = null;
+        if (!doctorService.doesDoctorExists(doctorDto.getId())) {
+            newDoctor = new Doctor(doctorDto.getId(),doctorDto.getFirstName(),doctorDto.getLastName());
         }
+        doctorService.saveDoctor(newDoctor);
+        return newDoctor;
     }
 
-    @PutMapping("/doctors")
+    /**
+     * First finds the doctor in DB, based on the id of the doctor that returned through the DTO,
+     * then modifies his values in doctor's fields in DB and saves the changes.
+     * @param doctorDto
+     * @return
+     */
+    @PutMapping("/doctors/{id}")
     public Doctor updateDoctor(@RequestBody DoctorDto doctorDto) {
-        Doctor doctor = new Doctor(doctorDto.getId(),doctorDto.getFirstName(),doctorDto.getLastName());
-        Doctor updatedDoctor = doctorService.getDoctorById(doctor.getId());
-        updatedDoctor.setFirstName(doctor.getFirstName());
-        updatedDoctor.setLastName(doctor.getLastName());
-        doctorService.saveDoctor(updatedDoctor);
-        return updatedDoctor;
+        // find doctor
+        Doctor doctor = doctorService.getDoctorById(doctorDto.getId());
+        // assign new values
+        doctor.setFirstName(doctorDto.getFirstName());
+        doctor.setLastName(doctorDto.getLastName());
+        doctorService.updateDoctor(doctor);
+        return doctor;
     }
 }

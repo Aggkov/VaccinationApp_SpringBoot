@@ -18,6 +18,8 @@ public interface DoctorService {
 
     public boolean doesDoctorExists(Integer afm);
 
+    public void updateDoctor(Doctor doctor);
+
     public void saveDoctor(Doctor doctor);
 
 }
