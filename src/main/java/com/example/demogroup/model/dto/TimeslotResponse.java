@@ -3,7 +3,7 @@ package com.example.demogroup.model.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class TimeslotDto {
+public class TimeslotResponse {
 
     private Integer id;
 
@@ -15,7 +15,7 @@ public class TimeslotDto {
 
     private Integer available;
 
-    public TimeslotDto() {
+    public TimeslotResponse() {
 
     }
 

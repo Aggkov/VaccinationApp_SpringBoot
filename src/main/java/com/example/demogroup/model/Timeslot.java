@@ -35,13 +35,14 @@ public class Timeslot implements Comparable<Timeslot> {
     private Doctor doctor;
 
     @OneToMany(mappedBy = "timeslot", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private Set<Reservation> reservations = new LinkedHashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "vc_timeslot",
             joinColumns = @JoinColumn(name = "ts_code"),
             inverseJoinColumns = @JoinColumn(name = "vc_code"))
+    @JsonBackReference
     private Set<VaccinationCenter> vaccinationCenters = new LinkedHashSet<>();
 
 
@@ -106,7 +107,7 @@ public class Timeslot implements Comparable<Timeslot> {
         this.reservations = reservations;
     }
 
-    @JsonBackReference
+//    @JsonBackReference
     public Set<VaccinationCenter> getVaccinationCenters() {
         return vaccinationCenters;
     }

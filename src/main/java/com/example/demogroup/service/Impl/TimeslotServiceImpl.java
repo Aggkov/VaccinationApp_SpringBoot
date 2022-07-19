@@ -3,10 +3,10 @@ package com.example.demogroup.service.Impl;
 import com.example.demogroup.exception.ResourceNotFoundException;
 import com.example.demogroup.model.Timeslot;
 import com.example.demogroup.model.VaccinationCenter;
-import com.example.demogroup.model.dto.TimeslotDto;
+import com.example.demogroup.model.dto.TimeslotResponse;
 import com.example.demogroup.repository.TimeSlotRepository;
 import com.example.demogroup.repository.VaccinationCenterRepository;
-import com.example.demogroup.service.TimeSlotService;
+import com.example.demogroup.service.TimeslotService;
 import com.example.demogroup.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class TimeSlotServiceImpl implements TimeSlotService {
+public class TimeslotServiceImpl implements TimeslotService {
 
     @Autowired
     TimeSlotRepository timeSlotRepository;
@@ -25,13 +25,31 @@ public class TimeSlotServiceImpl implements TimeSlotService {
     @Autowired
     VaccinationCenterRepository vaccinationCenterRepository;
 
+    @Override
+    public TimeslotResponse getTimeSlotByCenter(Integer centerId, Integer id) {
+
+        VaccinationCenter center = vaccinationCenterRepository.findById(centerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Vaccination center with this id " + centerId +
+                        "does not exist"));
+
+        Timeslot timeslot = timeSlotRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("this timeslot with id doesnt exist"));
+
+        TimeslotResponse timeslotResponse = new TimeslotResponse();
+        if(center.getTimeslots().contains(timeslot)) {
+            timeslotResponse = ObjectMapperUtils.map(timeslot, TimeslotResponse.class);
+
+        }
+        return timeslotResponse;
+    }
+
     /**
      *
      * @param id  VaccinationCenter id
      * @return    Returns a Set of custom TimeSlot Objects (DTO)
      */
     @Override
-    public ResponseEntity<Set<TimeslotDto>> findTimeslotsByVaccinationCenterId(Integer id) {
+    public ResponseEntity<Set<TimeslotResponse>> findTimeslotsByVaccinationCenterId(Integer id) {
 
         VaccinationCenter center = vaccinationCenterRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Vaccination Center with id = " + id + "was not found"));
@@ -45,12 +63,14 @@ public class TimeSlotServiceImpl implements TimeSlotService {
             }
         });
 
-        Set<TimeslotDto> timeslotDtosByCenter = timeslotsByCenter.stream()
-                .map(c -> ObjectMapperUtils.map(c, TimeslotDto.class))
+        Set<TimeslotResponse> timeslotDtosByCenter = timeslotsByCenter.stream()
+                .map(c -> ObjectMapperUtils.map(c, TimeslotResponse.class))
 
                 .collect(Collectors.toSet());
 
 
         return new ResponseEntity<>(timeslotDtosByCenter, HttpStatus.OK);
     }
+
+
 }

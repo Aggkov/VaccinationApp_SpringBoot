@@ -1,11 +1,11 @@
 package com.example.demogroup.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
 @Entity
+//@JsonSerialize
 @Table(name = "reservation")
 public class Reservation {
     @Id
@@ -13,14 +13,14 @@ public class Reservation {
     @Column(name = "rv_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_code")
-    @JsonIgnore
+    @JsonManagedReference  // changed this today
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ts_code")
-    @JsonBackReference
+    @JsonManagedReference // changed this today
     private Timeslot timeslot;
 
     public Integer getId() {

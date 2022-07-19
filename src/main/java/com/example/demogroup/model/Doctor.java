@@ -17,10 +17,10 @@ public class Doctor {
     @Column(name = "doc_surname", length = 45)
     private String lastName;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor" ,fetch = FetchType.LAZY)
     private Set<Vaccination> vaccinations = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor" ,fetch = FetchType.LAZY)
     private Set<Timeslot> timeslots = new LinkedHashSet<>();
 
     public Doctor() {

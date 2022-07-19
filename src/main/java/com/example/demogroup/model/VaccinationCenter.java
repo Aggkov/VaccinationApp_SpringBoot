@@ -1,5 +1,7 @@
 package com.example.demogroup.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -18,7 +20,9 @@ public class VaccinationCenter {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "vc_timeslot",
             joinColumns = @JoinColumn(name = "vc_code"),
-            inverseJoinColumns = @JoinColumn(name = "ts_code"))
+            inverseJoinColumns = @JoinColumn(name = "ts_code")
+            )
+    @JsonManagedReference
     private Set<Timeslot> timeslots = new LinkedHashSet<>();
 
     public Integer getId() {

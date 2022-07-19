@@ -1,10 +1,13 @@
 package com.example.demogroup.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+//@JsonSerialize
 @Table(name = "user")
 public class User {
     @Id
@@ -20,11 +23,15 @@ public class User {
     @Column(name = "user_email", length = 45)
     private String email;
 
-    @OneToMany(mappedBy = "user")
-//    @JsonBackReference
+    @OneToMany
+            (mappedBy = "user",
+            fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Reservation> reservations = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany
+            (mappedBy = "user" ,fetch = FetchType.LAZY)
+    @JsonBackReference
     private Set<Vaccination> vaccinations = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -75,4 +82,15 @@ public class User {
         this.vaccinations = vaccinations;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", reservations=" + reservations +
+                ", vaccinations=" + vaccinations +
+                '}';
+    }
 }

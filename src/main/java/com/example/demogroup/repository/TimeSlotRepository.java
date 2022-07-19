@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TimeSlotRepository extends JpaRepository<Timeslot, Integer> {
 
-//    List<TimeslotDto> findByVaccinationCenterId(Integer id);
+//    Timeslot findByCenterId(Integer centerId, Integer id);
+
+//    Timeslot fin
 
 }

@@ -1,6 +1,6 @@
 package com.example.demogroup.controller;
 
-import com.example.demogroup.model.dto.VaccinationCenterDto;
+import com.example.demogroup.model.dto.VaccinationCenterResponse;
 import com.example.demogroup.service.VaccinationCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,24 +22,24 @@ public class VaccinationCenterController {
     VaccinationCenterService vaccinationCenterService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<VaccinationCenterDto>> getAllVaccinationCenters() {
+    public ResponseEntity<List<VaccinationCenterResponse>> getAllVaccinationCenters() {
         return vaccinationCenterService.getAllVaccinationCenters();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VaccinationCenterDto> getVaccinationCenter(@PathVariable(name = "id") Integer id) {
-        VaccinationCenterDto vaccinationCenter = vaccinationCenterService.getVaccinationCenter(id);
+    public ResponseEntity<VaccinationCenterResponse> getVaccinationCenter(@PathVariable(name = "id") Integer id) {
+        VaccinationCenterResponse vaccinationCenter = vaccinationCenterService.getVaccinationCenter(id);
 
         return new ResponseEntity<>(vaccinationCenter, HttpStatus.OK);
     }
 
     @GetMapping("/getAvailable/{dateFrom}")
-    public ResponseEntity<List<VaccinationCenterDto>> getAllAvailableCentersByDate(
+    public ResponseEntity<List<VaccinationCenterResponse>> getAllAvailableCentersByDate(
             @PathVariable(name = "dateFrom") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateFrom, LocalDate dateTo) {
 
-        List<VaccinationCenterDto> vaccinationCenterDtos = vaccinationCenterService.getAllVaccinationCentersByDate(dateFrom, dateTo);
+        List<VaccinationCenterResponse> vaccinationCenterResponses = vaccinationCenterService.getAllVaccinationCentersByDate(dateFrom, dateTo);
 
-        return new ResponseEntity<>(vaccinationCenterDtos, HttpStatus.OK);
+        return new ResponseEntity<>(vaccinationCenterResponses, HttpStatus.OK);
     }
 
 

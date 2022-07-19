@@ -1,18 +1,14 @@
 package com.example.demogroup.model.dto;
 
-import com.example.demogroup.model.Timeslot;
-
-import java.util.List;
-
-public class VaccinationCenterDto {
+public class VaccinationCenterResponse {
 
     private Integer id;
 
     private String address;
 
-    private List<Timeslot> timeSlots;
+//    private List<Timeslot> timeSlots;
 
-    public VaccinationCenterDto() {
+    public VaccinationCenterResponse() {
     }
 
     public Integer getId() {
@@ -31,11 +27,11 @@ public class VaccinationCenterDto {
         this.address = address;
     }
 
-    public List<Timeslot> getTimeSlots() {
-        return timeSlots;
-    }
-
-    public void setTimeSlots(List<Timeslot> timeSlots) {
-        this.timeSlots = timeSlots;
-    }
+//    public List<Timeslot> getTimeSlots() {
+//        return timeSlots;
+//    }
+//
+//    public void setTimeSlots(List<Timeslot> timeSlots) {
+//        this.timeSlots = timeSlots;
+//    }
 }
