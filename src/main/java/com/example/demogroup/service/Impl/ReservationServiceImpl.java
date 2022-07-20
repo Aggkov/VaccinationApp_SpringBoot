@@ -41,6 +41,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .map(reservation -> modelMapper.map(reservation , ReservationResponse.class))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(reservationResponses, HttpStatus.OK);
+
     }
 
     @Override
