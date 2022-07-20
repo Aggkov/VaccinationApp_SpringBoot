@@ -5,7 +5,7 @@ import com.example.demogroup.model.User;
 
 public class ReservationRequest {
 
-    private User user;
+    private UserDto user;
 
-    private Timeslot timeslot;
+    private TimeslotResponse timeslot;
 }

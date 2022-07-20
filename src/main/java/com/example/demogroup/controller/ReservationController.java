@@ -2,6 +2,7 @@ package com.example.demogroup.controller;
 
 
 import com.example.demogroup.model.Reservation;
+import com.example.demogroup.model.dto.ReservationResponse;
 import com.example.demogroup.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,11 @@ public class ReservationController {
     ReservationService reservationService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Reservation>> getAllReservations() {
+    public ResponseEntity<List<ReservationResponse>> getAllReservations() {
 //        List<ReservationResponse> reservations = reservationService.getAllReservations();
-
+      //NEW
         return reservationService.getAllReservations();
+       // return reservationService.getAllReservations();
     }
 
     @PostMapping("/{userId}/{date}")

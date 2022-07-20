@@ -2,6 +2,7 @@ package com.example.demogroup.model;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "vaccination")
@@ -12,15 +13,16 @@ public class Vaccination {
     private Integer id;
 
     @Column(name = "vaccination_date")
-    private Instant vaccinationDate;
+    private LocalDate vaccinationDate;
 
     @Column(name = "expiration_date")
-    private Instant expirationDate;
+    private LocalDate expirationDate;
 
     @Column(name = "completed")
     private Integer completed;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     @JoinColumn(name = "user_code")
     private User user;
 
@@ -36,19 +38,19 @@ public class Vaccination {
         this.id = id;
     }
 
-    public Instant getVaccinationDate() {
+    public LocalDate getVaccinationDate() {
         return vaccinationDate;
     }
 
-    public void setVaccinationDate(Instant vaccinationDate) {
+    public void setVaccinationDate(LocalDate vaccinationDate) {
         this.vaccinationDate = vaccinationDate;
     }
 
-    public Instant getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Instant expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 

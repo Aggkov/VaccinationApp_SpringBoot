@@ -7,7 +7,31 @@ public class ReservationResponse {
 
     private Integer id;
 
-    private User user;
+    private UserDto user;
 
-    private Timeslot timeslot;
+    private TimeslotResponse timeslot;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
+    }
+
+    public TimeslotResponse getTimeslot() {
+        return timeslot;
+    }
+
+    public void setTimeslot(TimeslotResponse timeslot) {
+        this.timeslot = timeslot;
+    }
 }
