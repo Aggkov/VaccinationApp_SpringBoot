@@ -91,7 +91,7 @@ public class User {
         sb.append(", email='").append(email).append('\'');
         sb.append(", reservations=").append(reservations);
         sb.append(", vaccinations=").append(vaccinations);
-
+        sb.append(".");
         return sb.toString();
     }
 }
