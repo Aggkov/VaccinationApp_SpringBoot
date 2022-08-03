@@ -1,6 +1,6 @@
 package com.example.demogroup.service;
 
-import com.example.demogroup.model.dto.VaccinationDto;
+import com.example.demogroup.payload.VaccinationDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

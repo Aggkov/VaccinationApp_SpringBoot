@@ -1,6 +1,6 @@
 package com.example.demogroup.service;
 
-import com.example.demogroup.model.dto.TimeslotResponse;
+import com.example.demogroup.payload.TimeslotResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Set;

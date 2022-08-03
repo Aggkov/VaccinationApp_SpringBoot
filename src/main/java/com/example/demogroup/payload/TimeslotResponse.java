@@ -1,4 +1,4 @@
-package com.example.demogroup.model.dto;
+package com.example.demogroup.payload;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -1,7 +1,6 @@
 package com.example.demogroup.model;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
@@ -26,9 +25,9 @@ public class Vaccination {
     @JoinColumn(name = "user_code")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doc_code")
-    private Doctor doctor;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "doc_code")
+//    private Doctor doctor;
 
     public Integer getId() {
         return id;
@@ -69,14 +68,14 @@ public class Vaccination {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+//
+//    public Doctor getDoctor() {
+//        return doctor;
+//    }
+//
+//    public void setDoctor(Doctor doctor) {
+//        this.doctor = doctor;
+//    }
 
     @Override
     public String toString() {
@@ -85,7 +84,6 @@ public class Vaccination {
         sb.append(", expirationDate=").append(expirationDate);
         sb.append(", completed=").append(completed);
         sb.append(", userCode=").append(user);
-        sb.append(", docCode=").append(doctor);
         sb.append('}');
         return sb.toString();
     }

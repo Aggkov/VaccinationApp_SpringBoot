@@ -1,6 +1,6 @@
 package com.example.demogroup.controller;
 
-import com.example.demogroup.model.dto.TimeslotResponse;
+import com.example.demogroup.payload.TimeslotResponse;
 import com.example.demogroup.service.TimeslotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +26,6 @@ public class TimeslotController {
 
         return new ResponseEntity<>(timeslotResponse, HttpStatus.OK);
     }
-
-
     @GetMapping("{id}/timeslots")
     public ResponseEntity<Set<TimeslotResponse>> getAllTimeslotsByVaccinationCenter(
             @PathVariable(name = "id") Integer id) {

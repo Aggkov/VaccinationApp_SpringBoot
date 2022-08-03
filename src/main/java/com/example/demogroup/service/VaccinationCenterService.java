@@ -1,7 +1,7 @@
 package com.example.demogroup.service;
 
 import com.example.demogroup.model.VaccinationCenter;
-import com.example.demogroup.model.dto.VaccinationCenterResponse;
+import com.example.demogroup.payload.VaccinationCenterResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;

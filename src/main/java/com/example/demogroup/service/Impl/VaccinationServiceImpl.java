@@ -1,7 +1,7 @@
 package com.example.demogroup.service.Impl;
 
 import com.example.demogroup.model.Vaccination;
-import com.example.demogroup.model.dto.VaccinationDto;
+import com.example.demogroup.payload.VaccinationDto;
 import com.example.demogroup.repository.VaccinationRepository;
 import com.example.demogroup.service.VaccinationService;
 import org.modelmapper.ModelMapper;

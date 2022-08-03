@@ -1,4 +1,4 @@
-package com.example.demogroup.model.dto;
+package com.example.demogroup.payload;
 
 public class VaccinationCenterResponse {
 
@@ -34,4 +34,5 @@ public class VaccinationCenterResponse {
 //    public void setTimeSlots(List<Timeslot> timeSlots) {
 //        this.timeSlots = timeSlots;
 //    }
+
 }

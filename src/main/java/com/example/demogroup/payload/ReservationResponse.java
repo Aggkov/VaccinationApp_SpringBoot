@@ -1,7 +1,4 @@
-package com.example.demogroup.model.dto;
-
-import com.example.demogroup.model.Timeslot;
-import com.example.demogroup.model.User;
+package com.example.demogroup.payload;
 
 public class ReservationResponse {
 

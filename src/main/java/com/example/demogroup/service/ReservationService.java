@@ -1,8 +1,8 @@
 package com.example.demogroup.service;
 
 import com.example.demogroup.model.Reservation;
-import com.example.demogroup.model.dto.ReservationRequest;
-import com.example.demogroup.model.dto.ReservationResponse;
+import com.example.demogroup.payload.ReservationRequest;
+import com.example.demogroup.payload.ReservationResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

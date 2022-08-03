@@ -1,6 +1,6 @@
 package com.example.demogroup.controller;
 
-import com.example.demogroup.model.dto.VaccinationDto;
+import com.example.demogroup.payload.VaccinationDto;
 import com.example.demogroup.service.VaccinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
 package com.example.demogroup.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,10 +28,10 @@ public class Timeslot implements Comparable<Timeslot> {
     @Column(name = "available")
     private Integer available;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doc_code")
-    @JsonIgnore
-    private Doctor doctor;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "doc_code")
+//    @JsonIgnore
+//    private Doctor doctor;
 
     @OneToMany(mappedBy = "timeslot", fetch = FetchType.LAZY)
     @JsonBackReference
@@ -91,13 +90,13 @@ public class Timeslot implements Comparable<Timeslot> {
         this.available = available;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+//    public Doctor getDoctor() {
+//        return doctor;
+//    }
+//
+//    public void setDoctor(Doctor doctor) {
+//        this.doctor = doctor;
+//    }
 
     public Set<Reservation> getReservations() {
         return reservations;

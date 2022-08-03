@@ -1,6 +1,6 @@
 package com.example.demogroup.service;
 
-import com.example.demogroup.model.dto.UserDto;
+import com.example.demogroup.payload.UserDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

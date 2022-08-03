@@ -1,6 +1,6 @@
 package com.example.demogroup.controller;
 
-import com.example.demogroup.model.dto.VaccinationCenterResponse;
+import com.example.demogroup.payload.VaccinationCenterResponse;
 import com.example.demogroup.service.VaccinationCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;

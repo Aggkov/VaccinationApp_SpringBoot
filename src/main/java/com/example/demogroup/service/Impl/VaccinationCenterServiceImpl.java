@@ -3,7 +3,7 @@ package com.example.demogroup.service.Impl;
 import com.example.demogroup.exception.ResourceNotFoundException;
 import com.example.demogroup.model.Timeslot;
 import com.example.demogroup.model.VaccinationCenter;
-import com.example.demogroup.model.dto.VaccinationCenterResponse;
+import com.example.demogroup.payload.VaccinationCenterResponse;
 import com.example.demogroup.repository.VaccinationCenterRepository;
 import com.example.demogroup.service.VaccinationCenterService;
 import com.example.demogroup.utils.ObjectMapperUtils;

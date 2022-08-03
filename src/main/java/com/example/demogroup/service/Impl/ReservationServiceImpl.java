@@ -4,13 +4,13 @@ import com.example.demogroup.exception.ResourceNotFoundException;
 import com.example.demogroup.model.Reservation;
 import com.example.demogroup.model.Timeslot;
 import com.example.demogroup.model.User;
-import com.example.demogroup.model.dto.ReservationRequest;
-import com.example.demogroup.model.dto.ReservationResponse;
+import com.example.demogroup.payload.ReservationRequest;
+import com.example.demogroup.payload.ReservationResponse;
 import com.example.demogroup.repository.ReservationRepository;
 import com.example.demogroup.repository.TimeSlotRepository;
 import com.example.demogroup.repository.UserRepository;
 import com.example.demogroup.service.ReservationService;
-import org.modelmapper.ModelMapper;
+import com.example.demogroup.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -27,20 +26,18 @@ public class ReservationServiceImpl implements ReservationService {
     ReservationRepository reservationRepository;
 
     @Autowired
-    ModelMapper modelMapper;
-    @Autowired
     UserRepository userRepository;
 
     @Autowired
     TimeSlotRepository timeSlotRepository;
 
+    // ObjectMapper mapAll maps every element in the list to a DTO
     @Override
     public ResponseEntity<List<ReservationResponse>> getAllReservations() {
-        List<Reservation> reservations = new ArrayList<>(reservationRepository.findAll());//reservationRepository.findAll();
-        List<ReservationResponse> reservationResponses = reservations.stream()
-                .map(reservation -> modelMapper.map(reservation , ReservationResponse.class))
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(reservationResponses, HttpStatus.OK);
+        List<Reservation> reservations = new ArrayList<>(reservationRepository.findAll());
+
+        List<ReservationResponse> reservationResponse = ObjectMapperUtils.mapAll(reservations, ReservationResponse.class);
+        return new ResponseEntity<>(reservationResponse, HttpStatus.OK);
     }
 
     @Override
