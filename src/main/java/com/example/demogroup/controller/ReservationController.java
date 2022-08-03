@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reservation")
+@RequestMapping("/api/reservations")
 public class ReservationController {
 
     @Autowired
     ReservationService reservationService;
 
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<List<ReservationResponse>> getAllReservations() {
 
         return reservationService.getAllReservations();

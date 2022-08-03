@@ -15,13 +15,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vaccinationCenter")
+@RequestMapping("/api/vaccinationCenters")
 public class VaccinationCenterController {
 
     @Autowired
     VaccinationCenterService vaccinationCenterService;
 
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<List<VaccinationCenterResponse>> getAllVaccinationCenters() {
         return vaccinationCenterService.getAllVaccinationCenters();
     }

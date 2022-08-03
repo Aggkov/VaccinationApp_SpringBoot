@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/timeslot")
+@RequestMapping("/api/timeslots")
 public class TimeslotController {
 
     @Autowired
     TimeslotService timeslotService;
 
-    @GetMapping("/{centerId}/{id}")
+    @GetMapping("/{centerId}/{timeslotId}")
     public ResponseEntity<TimeslotResponse> getTimeSlotByCenter(@PathVariable(name = "centerId") Integer centerId,
-                                                                @PathVariable(name = "id") Integer Id) {
+                                                                @PathVariable(name = "timeslotId") Integer Id) {
         TimeslotResponse timeslotResponse = timeslotService.getTimeSlotByCenter(centerId, Id);
 
         return new ResponseEntity<>(timeslotResponse, HttpStatus.OK);
     }
-    @GetMapping("{id}/timeslots")
-    public ResponseEntity<Set<TimeslotResponse>> getAllTimeslotsByVaccinationCenter(
+    @GetMapping("{id}")
+    public ResponseEntity<List<TimeslotResponse>> getAllTimeslotsByVaccinationCenter(
             @PathVariable(name = "id") Integer id) {
 
         return timeslotService.findTimeslotsByVaccinationCenterId(id);

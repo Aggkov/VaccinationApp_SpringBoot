@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/users")
 public class UserController {
 
 
     @Autowired
     UserService userService;
 
-    @GetMapping("/allUsers")
+    @GetMapping
     public List<UserDto> allUsers() {
        return userService.getAllUsers();
     }
@@ -26,7 +26,7 @@ public class UserController {
         return userService.findUserById(id);
     }
 
-   @PostMapping("/create")
+   @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
    }

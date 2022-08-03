@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vaccination")
+@RequestMapping("/api/vaccinations")
 public class VaccinationController {
 
     @Autowired
     private VaccinationService vaccinationService;
 
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<List<VaccinationDto>> allVaccinations() {
         return vaccinationService.getAllVaccinations();
     }

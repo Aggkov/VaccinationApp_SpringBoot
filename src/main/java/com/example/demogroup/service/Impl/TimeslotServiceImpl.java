@@ -13,8 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class TimeslotServiceImpl implements TimeslotService {
@@ -49,7 +51,7 @@ public class TimeslotServiceImpl implements TimeslotService {
      * @return    Returns a Set of custom TimeSlot Objects (DTO)
      */
     @Override
-    public ResponseEntity<Set<TimeslotResponse>> findTimeslotsByVaccinationCenterId(Integer id) {
+    public ResponseEntity<List<TimeslotResponse>> findTimeslotsByVaccinationCenterId(Integer id) {
 
         VaccinationCenter center = vaccinationCenterRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Vaccination Center with id = " + id + "was not found"));
@@ -59,18 +61,12 @@ public class TimeslotServiceImpl implements TimeslotService {
             public int compare (Object o1, Object o2){
                 Timeslot timeslot1 = (Timeslot)o1;
                 Timeslot timeslot2 = (Timeslot)o2;
-                return timeslot2.getId().compareTo(timeslot1.getId());
+                return timeslot1.getId().compareTo(timeslot2.getId());
             }
         });
 
-        Set<TimeslotResponse> timeslotDtosByCenter = timeslotsByCenter.stream()
-                .map(c -> ObjectMapperUtils.map(c, TimeslotResponse.class))
+        List<TimeslotResponse> timeslotResponse = ObjectMapperUtils.mapAll(timeslotsByCenter, TimeslotResponse.class);
 
-                .collect(Collectors.toSet());
-
-
-        return new ResponseEntity<>(timeslotDtosByCenter, HttpStatus.OK);
+        return new ResponseEntity<>(timeslotResponse, HttpStatus.OK);
     }
-
-
 }
