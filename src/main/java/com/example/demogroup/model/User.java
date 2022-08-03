@@ -81,16 +81,17 @@ public class User {
     public void setVaccinations(Set<Vaccination> vaccinations) {
         this.vaccinations = vaccinations;
     }
-
+//TEST
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", reservations=" + reservations +
-                ", vaccinations=" + vaccinations +
-                '}';
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", reservations=").append(reservations);
+        sb.append(", vaccinations=").append(vaccinations);
+
+        return sb.toString();
     }
 }

@@ -34,10 +34,12 @@ public class ReservationServiceImpl implements ReservationService {
     // ObjectMapper mapAll maps every element in the list to a DTO
     @Override
     public ResponseEntity<List<ReservationResponse>> getAllReservations() {
+
         List<Reservation> reservations = new ArrayList<>(reservationRepository.findAll());
 
         List<ReservationResponse> reservationResponse = ObjectMapperUtils.mapAll(reservations, ReservationResponse.class);
         return new ResponseEntity<>(reservationResponse, HttpStatus.OK);
+
     }
 
     @Override
