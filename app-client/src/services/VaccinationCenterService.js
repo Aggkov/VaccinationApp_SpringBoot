@@ -12,7 +12,7 @@ class VaccinationCenterService {
     }
 
     getAllCentersByDate(dateFrom) {
-        return axios.get(VACCINATION_CENTER_AVAILABLE_REST_API_URL + '/' + dateFrom);
+        return axios.get(VACCINATION_CENTER_AVAILABLE_REST_API_URL + "/" + dateFrom);
     }
 
 }

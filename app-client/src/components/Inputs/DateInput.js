@@ -1,34 +1,36 @@
 import React, { useState, useRef } from 'react'
-import DatePicker from "react-datepicker";
+import { useHistory, Link } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import VaccinationCenterService from '../../services/VaccinationCenterService';
-import ListVaccinationCenterComponent from '../VaccinationCenter/ListVaccinationCenterComponent';
-
 
 const DateInput = () => {
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState();
 
-    const datehandler = (event) => {
-        setSelectedDate(event.target.value)
+    // const dateRef = useRef();
+    const history = useHistory();
 
+
+    const handleDate = function (event) {
+
+        setSelectedDate(event.target.value);
         console.log(selectedDate);
+
     }
 
     const handleClick = () => {
-        VaccinationCenterService.getAllCentersByDate(selectedDate)
-            .then((response) => {
-                console.log(response.data);
-            })
+        // <Link to={"/getAvailable" + "/" + dateRef}></Link>
 
+        history.push(`/getAvailable/${selectedDate}`);
     }
 
     return (
         <div>
-            <input onChange={datehandler} type="date" id="date" value={selectedDate}></input>
-            <button className="btn btn-success" onClick={handleClick}>Submit</button>
+            <input onChange={handleDate} type="date" id="date"></input>
+            <button type='button' className="btn btn-success" onClick={handleClick}>Submit</button>
         </div>
     )
 }
+
 
 export default DateInput
