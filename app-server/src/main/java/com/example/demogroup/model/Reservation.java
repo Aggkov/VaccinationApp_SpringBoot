@@ -15,12 +15,12 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_code")
-    @JsonManagedReference  // changed this today
+    @JsonManagedReference
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ts_code")
-    @JsonManagedReference // changed this today
+    @JsonManagedReference
     private Timeslot timeslot;
 
     public Integer getId() {

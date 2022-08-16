@@ -7,21 +7,33 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-//@JsonSerialize
 @Table(name = "user")
 public class User {
+//    @Id
+//    @Column(name = "user_afm", nullable = false)
+//    private Integer id;
     @Id
-    @Column(name = "user_afm", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "user_name", length = 45)
+    @Column(name = "firstname", length = 45)
     private String firstName;
 
-    @Column(name = "user_surname", length = 45)
+    @Column(name = "lastname", length = 45)
     private String lastName;
 
     @Column(name = "user_email", length = 45)
     private String email;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "enabled")
+    private boolean enabled;
 
     @OneToMany
             (mappedBy = "user",
@@ -33,6 +45,12 @@ public class User {
             (mappedBy = "user" ,fetch = FetchType.LAZY)
     @JsonBackReference
     private Set<Vaccination> vaccinations = new LinkedHashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+        joinColumns = @JoinColumn(name = "user_code"),
+        inverseJoinColumns = @JoinColumn(name = "role_code"))
+    private Set<Role> roles = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -66,6 +84,30 @@ public class User {
         this.email = userEmail;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Set<Reservation> getReservations() {
         return reservations;
     }
@@ -81,7 +123,16 @@ public class User {
     public void setVaccinations(Set<Vaccination> vaccinations) {
         this.vaccinations = vaccinations;
     }
-//TEST
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    //TEST
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");

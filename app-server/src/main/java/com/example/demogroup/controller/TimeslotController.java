@@ -33,4 +33,5 @@ public class TimeslotController {
         return timeslotService.findTimeslotsByVaccinationCenterId(id);
 
     }
+
 }
