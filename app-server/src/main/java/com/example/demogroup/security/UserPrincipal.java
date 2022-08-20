@@ -23,6 +23,10 @@ public class UserPrincipal implements UserDetails {
                 .collect(Collectors.toSet());
     }
 
+    public String getEmail() {
+        return user.getEmail();
+    }
+
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -51,5 +55,12 @@ public class UserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPrincipal{" +
+                "user=" + user +
+                '}';
     }
 }

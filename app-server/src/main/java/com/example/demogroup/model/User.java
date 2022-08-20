@@ -140,8 +140,7 @@ public class User {
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", email='").append(email).append('\'');
-        sb.append(", reservations=").append(reservations);
-        sb.append(", vaccinations=").append(vaccinations);
+
 
         return sb.toString();
     }
