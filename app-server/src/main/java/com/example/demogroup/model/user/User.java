@@ -1,5 +1,8 @@
-package com.example.demogroup.model;
+package com.example.demogroup.model.user;
 
+import com.example.demogroup.model.Reservation;
+import com.example.demogroup.model.role.Role;
+import com.example.demogroup.model.Vaccination;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;

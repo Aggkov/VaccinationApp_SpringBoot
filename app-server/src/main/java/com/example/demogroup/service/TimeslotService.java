@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TimeslotService {
 
-    ResponseEntity<List<TimeslotResponse>> findTimeslotsByVaccinationCenterId(Integer id);
+    ResponseEntity<List<TimeslotResponse>> getTimeslotsByVaccinationCenterId(Integer id);
 
     TimeslotResponse getTimeSlotByCenter(Integer centerId, Integer id);
 }

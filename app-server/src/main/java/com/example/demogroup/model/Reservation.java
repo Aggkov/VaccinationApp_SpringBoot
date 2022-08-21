@@ -1,5 +1,6 @@
 package com.example.demogroup.model;
 
+import com.example.demogroup.model.user.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;

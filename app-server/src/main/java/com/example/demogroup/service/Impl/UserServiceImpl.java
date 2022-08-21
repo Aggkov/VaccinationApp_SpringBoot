@@ -3,7 +3,7 @@
 //import com.example.demogroup.exception.CreateRecordException;
 //import com.example.demogroup.exception.ExceptionMessagesForExistingValues;
 //import com.example.demogroup.exception.ResourceNotFoundException2;
-//import com.example.demogroup.model.User;
+//import com.example.demogroup.model.user.User;
 //import com.example.demogroup.payload.UserDto;
 //import com.example.demogroup.repository.UserRepository;
 //import com.example.demogroup.service.UserService;
