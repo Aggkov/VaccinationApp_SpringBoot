@@ -1,6 +1,7 @@
 package com.example.demogroup.controller;
 
 import com.example.demogroup.payload.VaccinationCenterResponse;
+import com.example.demogroup.security.UserPrincipal;
 import com.example.demogroup.service.VaccinationCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +26,8 @@ public class VaccinationCenterController {
     @GetMapping
 //    @PreAuthorize("hasRole('USER') or hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<List<VaccinationCenterResponse>> getAllVaccinationCenters(Authentication authentication) {
-        System.out.println(authentication.getPrincipal());
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal(); // UserPrincipal{user=User{id=4, firstName='Admin', lastName='Admin', email='admin@gmail.com'}
+        System.out.println(userPrincipal.getUsername()); // 'admin'
         return vaccinationCenterService.getAllVaccinationCenters();
     }
 

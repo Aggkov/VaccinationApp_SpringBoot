@@ -26,6 +26,9 @@ public class User {
     @Column(name = "lastname", length = 45)
     private String lastName;
 
+    @Column(name = "user_afm")
+    private String userAfm;
+
     @Column(name = "user_email", length = 45)
     private String email;
 
@@ -77,6 +80,14 @@ public class User {
 
     public void setLastName(String userSurname) {
         this.lastName = userSurname;
+    }
+
+    public String getUserAfm() {
+        return userAfm;
+    }
+
+    public void setUserAfm(String userAfm) {
+        this.userAfm = userAfm;
     }
 
     public String getEmail() {
@@ -136,15 +147,17 @@ public class User {
     }
 
     //TEST
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id=").append(id);
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", email='").append(email).append('\'');
-
-
-        return sb.toString();
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userAfm='" + userAfm + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", enabled=" + enabled +
+                '}';
     }
 }

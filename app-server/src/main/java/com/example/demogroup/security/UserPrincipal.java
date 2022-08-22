@@ -22,6 +22,9 @@ public class UserPrincipal implements UserDetails {
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
                 .collect(Collectors.toSet());
     }
+    public User getUser() {
+        return user;
+    }
 
     public String getEmail() {
         return user.getEmail();
