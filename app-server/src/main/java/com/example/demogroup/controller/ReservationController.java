@@ -7,6 +7,7 @@ import com.example.demogroup.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class ReservationController {
     }
 
     @PostMapping("/{userId}/{date}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Reservation> addReservation(
                                                       @PathVariable (name = "userId") Integer userId,
                                                       @PathVariable(name = "date") Integer timeslotId) {

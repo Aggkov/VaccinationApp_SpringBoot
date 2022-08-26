@@ -1,6 +1,6 @@
 package com.example.demogroup.security;
 
-import com.example.demogroup.model.User;
+import com.example.demogroup.model.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +19,15 @@ public class UserPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
+                .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
                 .collect(Collectors.toSet());
+    }
+    public User getUser() {
+        return user;
+    }
+
+    public String getEmail() {
+        return user.getEmail();
     }
 
     @Override
@@ -51,5 +58,12 @@ public class UserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPrincipal{" +
+                "user=" + user +
+                '}';
     }
 }

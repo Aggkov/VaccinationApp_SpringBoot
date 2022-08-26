@@ -8,7 +8,6 @@ public class VaccinationDto {
     private LocalDate vaccinationDate;
     private LocalDate expirationDate;
     private UserDto user;
-    private DoctorDto doctor;
 
 
     public Integer getId() {
@@ -43,11 +42,4 @@ public class VaccinationDto {
         this.user = user;
     }
 
-    public DoctorDto getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(DoctorDto doctor) {
-        this.doctor = doctor;
-    }
 }

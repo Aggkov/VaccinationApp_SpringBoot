@@ -1,19 +1,20 @@
-package com.example.demogroup.payload;
+package com.example.demogroup.payload.response;
 
-public class UserDto {
+public class UserProfileResponse {
 
-    private Integer id;
     private String firstName;
+
     private String lastName;
+
     private String email;
-    private String userAfm;
 
-    public Integer getId() {
-        return id;
-    }
+    private String afm;
 
-    public void setId(Integer id) {
-        this.id = id;
+    public UserProfileResponse(String firstName, String lastName, String email, String afm) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.afm = afm;
     }
 
     public String getFirstName() {
@@ -40,11 +41,11 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getUserAfm() {
-        return userAfm;
+    public String getAfm() {
+        return afm;
     }
 
-    public void setUserAfm(String userAfm) {
-        this.userAfm = userAfm;
+    public void setAfm(String afm) {
+        this.afm = afm;
     }
 }

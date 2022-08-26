@@ -1,7 +1,8 @@
 package com.example.demogroup.service;
 
 import com.example.demogroup.model.VaccinationCenter;
-import com.example.demogroup.payload.VaccinationCenterResponse;
+import com.example.demogroup.payload.response.VaccinationCenterResponse;
+import com.example.demogroup.payload.response.VaccinationCenterTimeslotsResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public interface VaccinationCenterService {
 
     ResponseEntity<VaccinationCenter> addVaccinationCenter();
 
-    VaccinationCenterResponse getVaccinationCenter(Integer id);
+    VaccinationCenterTimeslotsResponse getVaccinationCenter(Integer id);
 
     List<VaccinationCenterResponse> getAllVaccinationCentersByDate(LocalDate dateFrom, LocalDate dateTo);
 

@@ -4,20 +4,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import ListVaccinationCenterComponent from './components/VaccinationCenter/ListVaccinationCenterComponent';
 import DateInput from "./components/Inputs/DateInput";
+import Home from './components/Home';
+import Login from './components/Login';
+import Profile from './components/Profile';
 
 function App() {
   return (
     <div className="App">
-
       <Router>
-        <div className="">
+        <div>
           <Switch>
-            <Route path="/" exact component={DateInput} />
-            <Route path="/getAvailable/:dateFrom" exact><ListVaccinationCenterComponent />
-            </Route>
-            {/* <Route  <DateInput /> */}
+            <Route path="/login" component={Login} />
+            <Route path="/home" component={Home} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/date" component={DateInput} />
+            <Route path="/getAvailable/:dateFrom" component={ListVaccinationCenterComponent} />
           </Switch>
-
         </div>
       </Router >
     </div >

@@ -1,5 +1,7 @@
 package com.example.demogroup.model;
 
+import com.example.demogroup.model.user.User;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 

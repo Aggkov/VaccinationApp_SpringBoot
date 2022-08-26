@@ -1,5 +1,8 @@
-package com.example.demogroup.model;
+package com.example.demogroup.model.user;
 
+import com.example.demogroup.model.Reservation;
+import com.example.demogroup.model.role.Role;
+import com.example.demogroup.model.Vaccination;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
@@ -22,6 +25,9 @@ public class User {
 
     @Column(name = "lastname", length = 45)
     private String lastName;
+
+    @Column(name = "user_afm")
+    private String userAfm;
 
     @Column(name = "user_email", length = 45)
     private String email;
@@ -74,6 +80,14 @@ public class User {
 
     public void setLastName(String userSurname) {
         this.lastName = userSurname;
+    }
+
+    public String getUserAfm() {
+        return userAfm;
+    }
+
+    public void setUserAfm(String userAfm) {
+        this.userAfm = userAfm;
     }
 
     public String getEmail() {
@@ -132,17 +146,17 @@ public class User {
         this.roles = roles;
     }
 
-    //TEST
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id=").append(id);
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", reservations=").append(reservations);
-        sb.append(", vaccinations=").append(vaccinations);
-
-        return sb.toString();
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userAfm='" + userAfm + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", enabled=" + enabled +
+                '}';
     }
 }

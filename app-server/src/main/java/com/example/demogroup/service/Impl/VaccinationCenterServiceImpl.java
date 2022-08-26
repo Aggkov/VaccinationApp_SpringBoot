@@ -3,7 +3,8 @@ package com.example.demogroup.service.Impl;
 import com.example.demogroup.exception.ResourceNotFoundException;
 import com.example.demogroup.model.Timeslot;
 import com.example.demogroup.model.VaccinationCenter;
-import com.example.demogroup.payload.VaccinationCenterResponse;
+import com.example.demogroup.payload.response.VaccinationCenterResponse;
+import com.example.demogroup.payload.response.VaccinationCenterTimeslotsResponse;
 import com.example.demogroup.repository.VaccinationCenterRepository;
 import com.example.demogroup.service.VaccinationCenterService;
 import com.example.demogroup.utils.ObjectMapperUtils;
@@ -13,9 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class VaccinationCenterServiceImpl implements VaccinationCenterService {
@@ -28,45 +28,25 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService {
 
         List<VaccinationCenter> centers = new ArrayList<>(vaccinationCenterRepository.findAll());
 
-//         = centers.stream()
-//                .map(center -> ObjectMapperUtils.map(center, VaccinationCenterDto.class))
-//                .collect(Collectors.toList());
         List<VaccinationCenterResponse> centersResponse = ObjectMapperUtils.mapAll(centers, VaccinationCenterResponse.class);
 
         return new ResponseEntity<>(centersResponse, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<VaccinationCenter> addVaccinationCenter() {
-        return null;
-    }
-
-
-    @Override
-    public VaccinationCenterResponse getVaccinationCenter(Integer id) {
+    public VaccinationCenterTimeslotsResponse getVaccinationCenter(Integer id) {
         VaccinationCenter center = vaccinationCenterRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Vaccination Center with id = " + id + " was not found"));
 
-        List<Timeslot> timeslots = new ArrayList<>(center.getTimeslots());
-        Collections.sort(timeslots);
+        Set<Timeslot> timeslots = center.getTimeslots().stream()
+                .sorted(Comparator.comparing(Timeslot::getStartTime))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
 
+        center.setTimeslots(timeslots);
 
-        System.out.println(timeslots);
+        VaccinationCenterTimeslotsResponse vaccinationCenterTimeslotsResponse = ObjectMapperUtils.map(center, VaccinationCenterTimeslotsResponse.class);
 
-
-        VaccinationCenterResponse centerDto = ObjectMapperUtils.map(center, VaccinationCenterResponse.class);
-
-        return centerDto;
-
-        //        Set<Timeslot> timeslotSet = new HashSet<>(timeslots);
-//
-//        center.setTimeslots(timeslotSet);
-
-        //            public int compare (Object o1, Object o2){
-//                Timeslot timeslot1 = (Timeslot)o1;
-//                Timeslot timeslot2 = (Timeslot)o2;
-//                return timeslot2.getId().compareTo(timeslot1.getId());
-//            }
+        return vaccinationCenterTimeslotsResponse;
 
     }
 
@@ -76,20 +56,15 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService {
         dateTo = dateFrom.plusMonths(1);
 
         List<VaccinationCenter> centers = vaccinationCenterRepository.findAllCentersByDate(dateFrom, dateTo);
-//        List<Timeslot> timeslots = new ArrayList<>(centers.getTimeslots());
-//        List<Timeslot> timeslotSet = (List<Timeslot>) centers.stream()
-//                        .flatMap(center -> center.getTimeslots()
-//                                .stream().Collections.sort().collect(Collectors.toList()));
-//        Collections.sort(timeslots);
 
-//         = centers.stream()
-//                .map(c -> ObjectMapperUtils.map(c, ))
-//                .collect(Collectors.toList());
+        List<VaccinationCenterResponse> vaccinationCenterResponseList = ObjectMapperUtils.mapAll(centers, VaccinationCenterResponse.class);
 
-        List<VaccinationCenterResponse> centerDtos = ObjectMapperUtils.mapAll(centers, VaccinationCenterResponse.class);
+        return vaccinationCenterResponseList;
+    }
 
-
-        return centerDtos;
+    @Override
+    public ResponseEntity<VaccinationCenter> addVaccinationCenter() {
+        return null;
     }
 
 //    @Override

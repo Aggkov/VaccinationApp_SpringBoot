@@ -3,7 +3,7 @@ package com.example.demogroup.service.Impl;
 import com.example.demogroup.exception.ResourceNotFoundException;
 import com.example.demogroup.model.Reservation;
 import com.example.demogroup.model.Timeslot;
-import com.example.demogroup.model.User;
+import com.example.demogroup.model.user.User;
 import com.example.demogroup.payload.ReservationRequest;
 import com.example.demogroup.payload.ReservationResponse;
 import com.example.demogroup.repository.ReservationRepository;

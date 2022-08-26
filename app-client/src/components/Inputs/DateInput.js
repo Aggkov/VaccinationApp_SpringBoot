@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import { useHistory, Link } from 'react-router-dom';
-import "react-datepicker/dist/react-datepicker.css";
 import VaccinationCenterService from '../../services/VaccinationCenterService';
 
 const DateInput = () => {

@@ -30,7 +30,7 @@ public class TimeslotController {
     public ResponseEntity<List<TimeslotResponse>> getAllTimeslotsByVaccinationCenter(
             @PathVariable(name = "id") Integer id) {
 
-        return timeslotService.findTimeslotsByVaccinationCenterId(id);
+        return timeslotService.getTimeslotsByVaccinationCenterId(id);
 
     }
 
