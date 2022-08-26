@@ -1,6 +1,6 @@
 package com.example.demogroup.payload.response;
 
-public class UserProfile {
+public class UserProfileResponse {
 
     private String firstName;
 
@@ -10,7 +10,7 @@ public class UserProfile {
 
     private String afm;
 
-    public UserProfile(String firstName, String lastName, String email, String afm) {
+    public UserProfileResponse(String firstName, String lastName, String email, String afm) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

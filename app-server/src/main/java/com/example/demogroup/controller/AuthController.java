@@ -49,6 +49,7 @@ public class AuthController {
         List<String> roles = userPrincipal.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userPrincipal.getUsername(),
                 userPrincipal.getEmail(),

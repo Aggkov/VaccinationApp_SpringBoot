@@ -1,12 +1,10 @@
-package com.example.demogroup.payload;
+package com.example.demogroup.payload.response;
 
 public class VaccinationCenterResponse {
 
     private Integer id;
 
     private String address;
-
-//    private List<Timeslot> timeSlots;
 
     public VaccinationCenterResponse() {
     }
@@ -26,13 +24,5 @@ public class VaccinationCenterResponse {
     public void setAddress(String address) {
         this.address = address;
     }
-
-//    public List<Timeslot> getTimeSlots() {
-//        return timeSlots;
-//    }
-//
-//    public void setTimeSlots(List<Timeslot> timeSlots) {
-//        this.timeSlots = timeSlots;
-//    }
 
 }

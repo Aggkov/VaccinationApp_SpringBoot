@@ -1,13 +1,13 @@
 package com.example.demogroup.controller;
 
 import com.example.demogroup.payload.UserDto;
-import com.example.demogroup.payload.response.UserProfile;
+import com.example.demogroup.payload.response.UserProfileResponse;
 import com.example.demogroup.security.UserPrincipal;
 import com.example.demogroup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +21,11 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/profile")
-    public ResponseEntity<UserProfile> getCurrentUser(Authentication authentication) {
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        System.out.println(userPrincipal);
-        UserProfile userProfile = userService.getCurrentUser(userPrincipal);
+    public ResponseEntity<UserProfileResponse> getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+//        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        UserProfileResponse userProfileResponse = userService.getCurrentUser(userPrincipal);
 
-        return new ResponseEntity< >(userProfile, HttpStatus.OK);
+        return new ResponseEntity< >(userProfileResponse, HttpStatus.OK);
     }
     @GetMapping
     public List<UserDto> allUsers() {

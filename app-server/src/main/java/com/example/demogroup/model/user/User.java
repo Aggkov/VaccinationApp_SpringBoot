@@ -146,7 +146,6 @@ public class User {
         this.roles = roles;
     }
 
-    //TEST
 
     @Override
     public String toString() {

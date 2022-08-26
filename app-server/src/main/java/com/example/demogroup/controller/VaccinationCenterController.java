@@ -1,7 +1,7 @@
 package com.example.demogroup.controller;
 
-import com.example.demogroup.payload.VaccinationCenterResponse;
-import com.example.demogroup.security.UserPrincipal;
+import com.example.demogroup.payload.response.VaccinationCenterResponse;
+import com.example.demogroup.payload.response.VaccinationCenterTimeslotsResponse;
 import com.example.demogroup.service.VaccinationCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,16 +24,15 @@ public class VaccinationCenterController {
     VaccinationCenterService vaccinationCenterService;
 
     @GetMapping
-//    @PreAuthorize("hasRole('USER') or hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<List<VaccinationCenterResponse>> getAllVaccinationCenters(Authentication authentication) {
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal(); // UserPrincipal{user=User{id=4, firstName='Admin', lastName='Admin', email='admin@gmail.com'}
-        System.out.println(userPrincipal.getUsername()); // 'admin'
+//        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal(); // UserPrincipal{user=User{id=4, firstName='Admin', lastName='Admin', email='admin@gmail.com'}
+//        System.out.println(userPrincipal.getUsername()); // 'admin'
         return vaccinationCenterService.getAllVaccinationCenters();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VaccinationCenterResponse> getVaccinationCenter(@PathVariable(name = "id") Integer id) {
-        VaccinationCenterResponse vaccinationCenter = vaccinationCenterService.getVaccinationCenter(id);
+    public ResponseEntity<VaccinationCenterTimeslotsResponse> getVaccinationCenter(@PathVariable(name = "id") Integer id) {
+        VaccinationCenterTimeslotsResponse vaccinationCenter = vaccinationCenterService.getVaccinationCenter(id);
 
         return new ResponseEntity<>(vaccinationCenter, HttpStatus.OK);
     }

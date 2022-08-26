@@ -5,7 +5,7 @@ import com.example.demogroup.exception.ExceptionMessagesForExistingValues;
 import com.example.demogroup.exception.ResourceNotFoundException2;
 import com.example.demogroup.model.user.User;
 import com.example.demogroup.payload.UserDto;
-import com.example.demogroup.payload.response.UserProfile;
+import com.example.demogroup.payload.response.UserProfileResponse;
 import com.example.demogroup.repository.UserRepository;
 import com.example.demogroup.security.UserPrincipal;
 import com.example.demogroup.service.UserService;
@@ -32,9 +32,10 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Override
-    public UserProfile getCurrentUser(UserPrincipal userPrincipal) {
-        return new UserProfile(userPrincipal.getUser().getFirstName(), userPrincipal.getUser().getLastName(),
+    public UserProfileResponse getCurrentUser(UserPrincipal userPrincipal) {
+        return new UserProfileResponse(userPrincipal.getUser().getFirstName(), userPrincipal.getUser().getLastName(),
                 userPrincipal.getUser().getEmail(), userPrincipal.getUser().getUserAfm());
     }
 

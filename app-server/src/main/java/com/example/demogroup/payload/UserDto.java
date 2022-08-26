@@ -6,6 +6,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String email;
+    private String userAfm;
 
     public Integer getId() {
         return id;
@@ -37,5 +38,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserAfm() {
+        return userAfm;
+    }
+
+    public void setUserAfm(String userAfm) {
+        this.userAfm = userAfm;
     }
 }
