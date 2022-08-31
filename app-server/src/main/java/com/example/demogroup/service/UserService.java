@@ -1,6 +1,7 @@
 package com.example.demogroup.service;
 
-import com.example.demogroup.payload.UserDto;
+import com.example.demogroup.model.user.User;
+import com.example.demogroup.payload.request.UserProfileUpdateRequest;
 import com.example.demogroup.payload.response.UserProfileResponse;
 import com.example.demogroup.security.UserPrincipal;
 import org.springframework.http.ResponseEntity;
@@ -11,15 +12,13 @@ public interface UserService {
 
     UserProfileResponse getCurrentUser(UserPrincipal userPrincipal);
 
-   List<UserDto> getAllUsers();
+   List<User> getAllUsers();
 
-   ResponseEntity<UserDto> createUser(UserDto userDto);
+//   ResponseEntity<User> addUser(User user);
 
-   ResponseEntity<UserDto> findUserById(Integer id);
+   ResponseEntity<UserProfileResponse> updateUser(Integer id , UserProfileUpdateRequest userProfileUpdateRequest);
 
-   ResponseEntity<UserDto> updateUser(Integer id , UserDto userDto);
-
-   void deleteUser(Integer id);
+//   void deleteUser(Integer id);
 
 
 

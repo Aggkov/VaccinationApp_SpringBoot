@@ -7,8 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TimeSlotRepository extends JpaRepository<Timeslot, Integer> {
 
-//    Timeslot findByCenterId(Integer centerId, Integer id);
-
-//    Timeslot fin
 
 }

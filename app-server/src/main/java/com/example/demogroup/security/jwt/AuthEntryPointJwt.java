@@ -1,5 +1,6 @@
 package com.example.demogroup.security.jwt;
 
+import com.example.demogroup.exception.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
@@ -18,8 +19,10 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException {
+                         AuthenticationException authException) throws IOException, ServletException, UnauthorizedException {
+
         logger.error("Unauthorized error: {}", authException.getMessage());
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+
+//        throw new UnauthorizedException("Error: Unauthorized", HttpStatus.UNAUTHORIZED);
     }
 }

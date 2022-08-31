@@ -7,7 +7,7 @@ public class VaccinationDto {
     private Integer id;
     private LocalDate vaccinationDate;
     private LocalDate expirationDate;
-    private UserDto user;
+//    private UserResponse user;
 
 
     public Integer getId() {
@@ -34,12 +34,12 @@ public class VaccinationDto {
         this.expirationDate = expirationDate;
     }
 
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
+//    public UserResponse getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(UserResponse user) {
+//        this.user = user;
+//    }
 
 }

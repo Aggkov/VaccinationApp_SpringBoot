@@ -1,19 +1,31 @@
-package com.example.demogroup.payload;
+package com.example.demogroup.payload.request;
 
-public class UserDto {
+public class UserProfileUpdateRequest {
 
-    private Integer id;
+    private Integer Id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
-    private String userAfm;
+
+    private String afm;
+
+//    public UserProfileRequest(String firstName, String lastName, String email, String afm) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.afm = afm;
+//    }
+
 
     public Integer getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        Id = id;
     }
 
     public String getFirstName() {
@@ -40,11 +52,11 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getUserAfm() {
-        return userAfm;
+    public String getAfm() {
+        return afm;
     }
 
-    public void setUserAfm(String userAfm) {
-        this.userAfm = userAfm;
+    public void setAfm(String afm) {
+        this.afm = afm;
     }
 }
