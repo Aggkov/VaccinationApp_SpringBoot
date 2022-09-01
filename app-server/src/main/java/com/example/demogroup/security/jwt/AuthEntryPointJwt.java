@@ -1,11 +1,13 @@
 package com.example.demogroup.security.jwt;
 
-import com.example.demogroup.exception.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +17,20 @@ import java.io.IOException;
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
-    private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+    @Autowired @Qualifier("handlerExceptionResolver")
+    private HandlerExceptionResolver resolver;
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException, UnauthorizedException {
+                         AuthenticationException authException) throws IOException, ServletException {
 
         logger.error("Unauthorized error: {}", authException.getMessage());
 
-//        throw new UnauthorizedException("Error: Unauthorized", HttpStatus.UNAUTHORIZED);
+        resolver.resolveException(request, response, null, authException);
+
+
+
+
     }
 }

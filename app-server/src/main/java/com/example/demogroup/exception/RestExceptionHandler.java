@@ -3,6 +3,7 @@ package com.example.demogroup.exception;
 import com.example.demogroup.payload.response.ApiErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -31,18 +32,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiErrorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(UnauthorizedException.class)
+    @ExceptionHandler(AuthenticationException.class)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    public ResponseEntity<ApiErrorResponse> handleUnauthorizedException(UnauthorizedException ex) {
+    public ResponseEntity<ApiErrorResponse> handleAuthenticationException(AuthenticationException ex) {
 
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
 
         return new ResponseEntity<>(apiErrorResponse, HttpStatus.UNAUTHORIZED);
     }
-
-
-
-
-
 
 }
