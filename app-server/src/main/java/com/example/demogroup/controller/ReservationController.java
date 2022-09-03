@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +27,6 @@ public class ReservationController {
 
     @PostMapping("/{timeSlotId}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-
     public ResponseEntity<ReservationResponse> addReservation(
                         @AuthenticationPrincipal UserPrincipal userPrincipal,
                         @PathVariable(name = "timeSlotId") Integer timeslotId) {

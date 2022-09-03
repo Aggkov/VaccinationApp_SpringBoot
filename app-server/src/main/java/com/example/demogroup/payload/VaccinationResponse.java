@@ -2,7 +2,7 @@ package com.example.demogroup.payload;
 
 import java.time.LocalDate;
 
-public class VaccinationDto {
+public class VaccinationResponse {
 
     private Integer id;
     private LocalDate vaccinationDate;

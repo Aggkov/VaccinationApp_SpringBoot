@@ -3,6 +3,7 @@ package com.example.demogroup.exception;
 import com.example.demogroup.payload.response.ApiErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,6 +33,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiErrorResponse, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(VaccinationException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ApiErrorResponse> handleAuthenticationException(VaccinationException ex) {
+
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+
+        return new ResponseEntity<>(apiErrorResponse, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(AuthenticationException.class)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ResponseEntity<ApiErrorResponse> handleAuthenticationException(AuthenticationException ex) {
@@ -40,5 +50,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(apiErrorResponse, HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(code = HttpStatus.FORBIDDEN)
+    public ResponseEntity<ApiErrorResponse> handleAuthenticationException(AccessDeniedException ex) {
+
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.FORBIDDEN, ex.getMessage());
+
+        return new ResponseEntity<>(apiErrorResponse, HttpStatus.FORBIDDEN);
+    }
+
+
 
 }

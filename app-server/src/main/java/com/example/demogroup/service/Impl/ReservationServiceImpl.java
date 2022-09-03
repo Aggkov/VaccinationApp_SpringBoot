@@ -4,6 +4,7 @@ import com.example.demogroup.exception.ReservationException;
 import com.example.demogroup.exception.ResourceNotFoundException;
 import com.example.demogroup.model.Reservation;
 import com.example.demogroup.model.Timeslot;
+import com.example.demogroup.model.role.ERole;
 import com.example.demogroup.model.user.User;
 import com.example.demogroup.payload.request.ReservationRequest;
 import com.example.demogroup.payload.response.ReservationResponse;
@@ -16,6 +17,8 @@ import com.example.demogroup.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,40 +56,44 @@ public class ReservationServiceImpl implements ReservationService {
         User user = userRepository.findById(userPrincipal.getUser().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("user was not found with this id"));
 
-        Timeslot timeslot = timeSlotRepository.findById(timeslotId)
-                .orElseThrow(() -> new ResourceNotFoundException("timeslot was not found with this id"));
+        System.out.println(userPrincipal.getAuthorities().contains(new SimpleGrantedAuthority(ERole.ROLE_ADMIN.toString())));
 
-        Long currentReservationCountInTimeSlot = timeslot.getReservations()
-                .stream()
-                .count();
+        if(userPrincipal.getAuthorities().contains(new SimpleGrantedAuthority(ERole.ROLE_ADMIN.toString())) ||
+                userPrincipal.getAuthorities().contains(new SimpleGrantedAuthority(ERole.ROLE_USER.toString()))) {
 
+            Timeslot timeslot = timeSlotRepository.findById(timeslotId)
+                    .orElseThrow(() -> new ResourceNotFoundException("timeslot was not found with this id"));
 
-        if(user.getReservations().size() == 0) {
-            if(currentReservationCountInTimeSlot < totalAllowedReservations) {
-                Reservation reservation = new Reservation();
+            Long currentReservationCountInTimeSlot = timeslot.getReservations()
+                    .stream()
+                    .count();
 
-                reservation.setUser(user);
-                reservation.setTimeslot(timeslot);
+            if(user.getReservations().size() == 0) {
+                if(currentReservationCountInTimeSlot < totalAllowedReservations) {
 
-                Reservation newReservation = reservationRepository.save(reservation);
+                    Reservation reservation = new Reservation();
+                    reservation.setUser(user);
+                    reservation.setTimeslot(timeslot);
 
-                // check if with new reservation the timeslot will be set to unavailable
-                Long newReservationCountInTimeSlot = timeslot.getReservations()
-                        .stream()
-                        .count();
-                if(newReservationCountInTimeSlot == totalAllowedReservations) {
-                    timeslot.setAvailable(0);
+                    Reservation newReservation = reservationRepository.save(reservation);
+
+                    // check if with new reservation the timeslot will be set to unavailable
+                    Long newReservationCountInTimeSlot = timeslot.getReservations()
+                            .stream()
+                            .count();
+                    if(newReservationCountInTimeSlot == totalAllowedReservations) {
+                        timeslot.setAvailable(0);
+                    }
+                    else {
+                        ReservationResponse reservationResponse = ObjectMapperUtils.map(newReservation, ReservationResponse.class);
+                        return new ResponseEntity<>(reservationResponse, HttpStatus.CREATED);
+                    }
                 }
-                else {
-                    ReservationResponse reservationResponse = ObjectMapperUtils.map(newReservation, ReservationResponse.class);
-                    return new ResponseEntity<>(reservationResponse, HttpStatus.CREATED);
-                }
+                throw new ReservationException("TimeSlot with Id " + timeslot.getId() + " has reached its maximum reservation number");
             }
-            throw new ReservationException("TimeSlot with Id " + timeslot.getId() + " has reached its maximum reservation number");
+            throw new ReservationException("User has already done a reservation");
         }
-
-        throw new ReservationException("User has already done a reservation");
-
+        throw new AccessDeniedException("Access is Forbidden");
     }
 
     @Override

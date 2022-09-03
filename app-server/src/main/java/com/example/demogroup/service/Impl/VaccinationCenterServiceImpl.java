@@ -70,8 +70,5 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService {
         return null;
     }
 
-//    @Override
-//    public ResponseEntity<VaccinationCenter> updateVaccinationCenter(Integer id) {
-//        return null;
-//    }
+
 }

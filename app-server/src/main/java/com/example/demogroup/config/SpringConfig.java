@@ -12,7 +12,6 @@ public class SpringConfig {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
     @Bean
     public DefaultHandlerExceptionResolver getExceptionResolver() {
         return new DefaultHandlerExceptionResolver();
