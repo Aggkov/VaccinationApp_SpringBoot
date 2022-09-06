@@ -38,10 +38,13 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService {
         VaccinationCenter center = vaccinationCenterRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Vaccination Center with id = " + id + " was not found"));
 
+        // return only available timeslots for this center
         Set<Timeslot> timeslots = center.getTimeslots().stream()
+                .filter(timeslot -> timeslot.getAvailable() != 0)
                 .sorted(Comparator.comparing(Timeslot::getStartTime))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
+        // timeslots are now sorted
         center.setTimeslots(timeslots);
 
         VaccinationCenterTimeslotsResponse vaccinationCenterTimeslotsResponse = ObjectMapperUtils.map(center, VaccinationCenterTimeslotsResponse.class);
@@ -67,8 +70,5 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService {
         return null;
     }
 
-//    @Override
-//    public ResponseEntity<VaccinationCenter> updateVaccinationCenter(Integer id) {
-//        return null;
-//    }
+
 }

@@ -1,13 +1,13 @@
 package com.example.demogroup.controller;
 
 
-import com.example.demogroup.model.Reservation;
-import com.example.demogroup.payload.ReservationResponse;
+import com.example.demogroup.payload.response.ReservationResponse;
+import com.example.demogroup.security.UserPrincipal;
 import com.example.demogroup.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +25,13 @@ public class ReservationController {
         return reservationService.getAllReservations();
     }
 
-    @PostMapping("/{userId}/{date}")
+    @PostMapping("/{timeSlotId}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Reservation> addReservation(
-                                                      @PathVariable (name = "userId") Integer userId,
-                                                      @PathVariable(name = "date") Integer timeslotId) {
-        Reservation newReservation = reservationService.addReservation(userId, timeslotId);
+    public ResponseEntity<ReservationResponse> addReservation(
+                        @AuthenticationPrincipal UserPrincipal userPrincipal,
+                        @PathVariable(name = "timeSlotId") Integer timeslotId) {
 
-        return new ResponseEntity<>(newReservation, HttpStatus.CREATED);
+        return reservationService.addReservation(userPrincipal, timeslotId);
+
     }
 }

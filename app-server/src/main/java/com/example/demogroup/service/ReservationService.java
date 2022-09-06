@@ -1,8 +1,9 @@
 package com.example.demogroup.service;
 
 import com.example.demogroup.model.Reservation;
-import com.example.demogroup.payload.ReservationRequest;
-import com.example.demogroup.payload.ReservationResponse;
+import com.example.demogroup.payload.request.ReservationRequest;
+import com.example.demogroup.payload.response.ReservationResponse;
+import com.example.demogroup.security.UserPrincipal;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface ReservationService {
 
     ResponseEntity<List<ReservationResponse>> getAllReservations();
 
-    Reservation addReservation(Integer userId, Integer timeslotId);
+    ResponseEntity<ReservationResponse> addReservation(UserPrincipal userPrincipal, Integer timeslotId);
 
     Reservation getReservation(Integer id);
 

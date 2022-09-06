@@ -14,9 +14,9 @@ public class Reservation {
     @Column(name = "rv_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_code")
-    @JsonManagedReference
+//    @JsonManagedReference
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

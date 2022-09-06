@@ -44,7 +44,7 @@ public class User {
     @OneToMany
             (mappedBy = "user",
             fetch = FetchType.LAZY)
-    @JsonBackReference
+//    @JsonBackReference
     private Set<Reservation> reservations = new LinkedHashSet<>();
 
     @OneToMany

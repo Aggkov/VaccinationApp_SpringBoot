@@ -40,9 +40,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/api/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/reservations").hasAnyRole("ADMIN","DOCTOR")
-                .antMatchers(HttpMethod.GET, "/api/**").hasAnyRole("ADMIN","USER","DOCTOR")
+                .mvcMatchers("/api/auth/**").permitAll()
+                .mvcMatchers(HttpMethod.GET,"/api/reservations").hasAnyRole("ADMIN","DOCTOR")
+                .mvcMatchers(HttpMethod.GET, "/api/**").hasAnyRole("ADMIN","USER","DOCTOR")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)

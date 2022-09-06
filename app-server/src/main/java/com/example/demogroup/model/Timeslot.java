@@ -28,11 +28,6 @@ public class Timeslot implements Comparable<Timeslot> {
     @Column(name = "available")
     private Integer available;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "doc_code")
-//    @JsonIgnore
-//    private Doctor doctor;
-
     @OneToMany(mappedBy = "timeslot", fetch = FetchType.LAZY)
     @JsonBackReference
     private Set<Reservation> reservations = new LinkedHashSet<>();
@@ -43,7 +38,6 @@ public class Timeslot implements Comparable<Timeslot> {
             inverseJoinColumns = @JoinColumn(name = "vc_code"))
     @JsonBackReference
     private Set<VaccinationCenter> vaccinationCenters = new LinkedHashSet<>();
-
 
     @Override
     public int compareTo(Timeslot o) {
@@ -90,14 +84,6 @@ public class Timeslot implements Comparable<Timeslot> {
         this.available = available;
     }
 
-//    public Doctor getDoctor() {
-//        return doctor;
-//    }
-//
-//    public void setDoctor(Doctor doctor) {
-//        this.doctor = doctor;
-//    }
-
     public Set<Reservation> getReservations() {
         return reservations;
     }
@@ -106,23 +92,12 @@ public class Timeslot implements Comparable<Timeslot> {
         this.reservations = reservations;
     }
 
-//    @JsonBackReference
+
     public Set<VaccinationCenter> getVaccinationCenters() {
         return vaccinationCenters;
     }
 
     public void setVaccinationCenters(Set<VaccinationCenter> vaccinationCenters) {
         this.vaccinationCenters = vaccinationCenters;
-    }
-
-    @Override
-    public String toString() {
-        return "Timeslot{" +
-                "id=" + id +
-                ", startDate=" + startDate +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-
-                '}';
     }
 }

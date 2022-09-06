@@ -27,10 +27,6 @@ public class Vaccination {
     @JoinColumn(name = "user_code")
     private User user;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "doc_code")
-//    private Doctor doctor;
-
     public Integer getId() {
         return id;
     }

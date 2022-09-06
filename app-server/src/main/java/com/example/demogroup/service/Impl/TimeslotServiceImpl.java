@@ -54,21 +54,12 @@ public class TimeslotServiceImpl implements TimeslotService {
     public ResponseEntity<List<TimeslotResponse>> getTimeslotsByVaccinationCenterId(Integer id) {
 
         VaccinationCenter center = vaccinationCenterRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Vaccination Center with id = " + id + "was not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Vaccination Center with id = " + id + " was not found"));
 
         List<Timeslot> timeslotsByCenter = new ArrayList<>(center.getTimeslots());
 
         Collections.sort(timeslotsByCenter, Comparator.comparing(Timeslot::getId));
-//                new Comparator()
-//                {
 
-
-//            public int compare (Object o1, Object o2){
-//                Timeslot timeslot1 = (Timeslot)o1;
-//                Timeslot timeslot2 = (Timeslot)o2;
-//                return timeslot1.getId().compareTo(timeslot2.getId());
-//            }
-//        });
 
         List<TimeslotResponse> timeslotResponse = ObjectMapperUtils.mapAll(timeslotsByCenter, TimeslotResponse.class);
 
