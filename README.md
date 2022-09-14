@@ -1,1 +1,1 @@
-# A Vaccinatinon App REST API created with Spring Boot.
+## Spring Boot, MySQL, Spring Security, JWT, JPA, Rest API
