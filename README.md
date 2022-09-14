@@ -1,1 +1,1 @@
-#A Vaccinatinon App REST API created with Spring Boot.
+# A Vaccinatinon App REST API created with Spring Boot.
